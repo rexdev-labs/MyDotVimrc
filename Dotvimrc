@@ -5,27 +5,29 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
+Plug 'tomasiser/vim-code-dark'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'natebosch/dartlang-snippets'
-
+Plug 'chrisbra/colorizer'
 Plug 'tpope/vim-projectionist'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'chiel92/vim-autoformat'
 Plug 'jiangmiao/auto-pairs'
-
+Plug 'eslint/eslint'
 Plug 'dart-lang/dart-vim-plugin'
-
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
-
+Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
 Plug 'morhetz/gruvbox'
 call plug#end()
 
-colorscheme gruvbox
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+colorscheme codedark
 
 set noerrorbells                                              
 set number
@@ -127,3 +129,12 @@ let g:NERDTreeGitStatusWithFlags = 1
 
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+let g:indent_guides_enable_on_vim_startup = 1
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=8f8f8f
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8f8f8f
+let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
+autocmd FileType javascript setlocal formatprg=prettier\ --single-quote\ --trailing-comma\ es5
+let g:neoformat_try_formatprg = 1
